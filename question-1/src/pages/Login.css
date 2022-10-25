@@ -1,0 +1,25 @@
+.form{
+    margin: 20px auto;
+    width: 60%;
+}
+
+.img-container{
+    margin: auto;
+    width: 60%;
+    text-align: center;
+}
+
+.user-img{
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+}
+
+#camera-icon{
+    text-align: center;
+}
+
+.icon-box{
+    margin: auto;
+    text-align: center;
+} 
