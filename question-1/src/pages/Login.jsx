@@ -12,6 +12,7 @@ import {
 import ExploreContainer from "../components/ExploreContainer";
 import { cameraOutline } from 'ionicons/icons';
 import "./Login.css";
+import Card from "../components/Card";
 
 const Login = () => {
   return (
@@ -45,6 +46,11 @@ const Login = () => {
           <IonItem>
             <IonInput type="text" placeholder="Phone number"></IonInput>
           </IonItem>
+
+
+          <div>
+            <Card/>
+          </div>
         </IonCard>
       </IonContent>
     </IonPage>
