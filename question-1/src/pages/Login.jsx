@@ -9,15 +9,16 @@ import {
   IonItem,
   IonIcon,
   IonButton,
-  IonLabel
+  IonLabel,
 } from "@ionic/react";
-import ExploreContainer from "../components/ExploreContainer";
 import { cameraOutline } from "ionicons/icons";
 import "./Login.css";
 import Card from "../components/Card";
 import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
-import { Camera, CameraResultType } from '@capacitor/camera';
+import { Camera, CameraResultType } from "@capacitor/camera";
+import { collection, addDoc } from "firebase/firestore";
+import {db} from "../config/firebase-config"
 
 const Login = () => {
   const {
@@ -41,7 +42,7 @@ const Login = () => {
     setImg,
     nameInput,
     setNameInput,
-    hashValues
+    hashValues,
   } = useContext(UserContext);
 
   const expSplit = month.split("-");
@@ -52,18 +53,18 @@ const Login = () => {
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: true,
-      resultType: CameraResultType.Uri
+      resultType: CameraResultType.Uri,
     });
-  
+
     var imageUrl = image.webPath;
-  
-    setImg(imageUrl)
+
+    setImg(imageUrl);
   };
 
   const handleCardNum = (e) => {
     setCardNum(e.target.value);
-    if(cardNum.length > 16){
-      cardNum.trim()
+    if (cardNum.length > 16) {
+      cardNum.trim();
     }
     console.log(cardNum);
   };
@@ -89,16 +90,42 @@ const Login = () => {
   };
 
   const handleCellNo = (e) => {
-    setCellNum(e.target.value)
-  }
+    setCellNum(e.target.value);
+  };
 
   const handleAddress = (e) => {
-    setAddress(e.target.value)
-  }
+    setAddress(e.target.value);
+  };
 
   const handleName = (e) => {
-    setNameInput(e.target.value)
-  }
+    setNameInput(e.target.value);
+  };
+
+  const register = async () => {
+    setCardHolder(hashValues(cardHolder))
+    setCvv(hashValues(cvv))
+    // Add a new document with a generated id.
+    const docRef = await addDoc(collection(db, "web-test-q1-9694b"), {
+      name: nameInput,
+      address: address,
+      phoneNum: cellNum,
+      cardNumber: cardNum,
+      cardHolder: cvv,
+      expDate: month,
+
+    });
+    console.log("Document written with ID: ", docRef.id);
+
+    setNameInput("")
+    setAddress("")
+    setCellNum("")
+    setCvv("")
+    setMonth("")
+    setCardNum("")
+    setCardHolder("")
+
+    window.location.pathname = "/tab1"
+  };
 
   return (
     <IonPage>
@@ -117,7 +144,7 @@ const Login = () => {
           <div className="img-container">
             <img className="user-img" src={img} />
             <div className="icon-box">
-              <IonIcon icon={cameraOutline} size="large" onClick= {takePhoto}/>
+              <IonIcon icon={cameraOutline} size="large" onClick={takePhoto} />
             </div>
           </div>
 
@@ -125,7 +152,7 @@ const Login = () => {
             <IonInput
               type="text"
               placeholder="Name and surname"
-              onIonChange= {handleName}
+              onIonChange={handleName}
               value={nameInput}
             ></IonInput>
           </IonItem>
@@ -135,7 +162,7 @@ const Login = () => {
               type="text"
               placeholder="Address"
               value={address}
-              onIonChange= {handleAddress}
+              onIonChange={handleAddress}
             ></IonInput>
           </IonItem>
           <IonItem>
@@ -143,35 +170,46 @@ const Login = () => {
               type="text"
               placeholder="Phone number"
               value={cellNum}
-              onIonChange= {handleCellNo}
+              onIonChange={handleCellNo}
             ></IonInput>
           </IonItem>
-          
+
           <IonItem>
             <IonLabel>Name on card:</IonLabel>
-              <IonInput
-                type="text"
-                placeholder="Name on the card"
-                value={cardHolder}
-                onIonChange = {handleCardHolder}
-              ></IonInput>
-            </IonItem>
+            <IonInput
+              type="text"
+              placeholder="Name on the card"
+              value={cardHolder}
+              onIonChange={handleCardHolder}
+            ></IonInput>
+          </IonItem>
 
-            <IonItem>
-              <IonInput
-                type="number"
-                placeholder="Card number"
-                value={cardNum}
-                onIonChange = {handleCardNum}
-              ></IonInput>
-            </IonItem>
-            <IonItem>
-              <IonInput type= "month" value= {month} onIonChange= {handleMonth}></IonInput>
-            </IonItem>
-            <IonItem>
-              <IonInput type="number" placeholder="CVV" value={cvv} onIonChange= {handleCvv}></IonInput>
-            </IonItem>
-            <div className= "button-box"><IonButton shape= "round">Register</IonButton></div>
+          <IonItem>
+            <IonInput
+              type="number"
+              placeholder="Card number"
+              value={cardNum}
+              onIonChange={handleCardNum}
+            ></IonInput>
+          </IonItem>
+          <IonItem>
+            <IonInput
+              type="month"
+              value={month}
+              onIonChange={handleMonth}
+            ></IonInput>
+          </IonItem>
+          <IonItem>
+            <IonInput
+              type="number"
+              placeholder="CVV"
+              value={cvv}
+              onIonChange={handleCvv}
+            ></IonInput>
+          </IonItem>
+          <div className="button-box">
+            <IonButton shape="round" onClick= {register}>Register</IonButton>
+          </div>
         </IonCard>
       </IonContent>
     </IonPage>

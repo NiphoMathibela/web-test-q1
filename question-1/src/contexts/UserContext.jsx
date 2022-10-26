@@ -1,4 +1,6 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect} from "react";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import {db} from "../config/firebase-config"
 
 export const UserContext = createContext();
 
@@ -12,7 +14,19 @@ const UserContextProvider = (props) => {
   const [address, setAddress] = useState("");
   const [cellNum, setCellNum] = useState("");
   const [img, setImg] = useState("");
-  const [name, setNameInput] = useState("");
+  const [nameInput, setNameInput] = useState("");
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getDocs(collection(db, "products"));
+      console.log(data);
+      setProducts(data.docs.map((doc) => ({...doc.data(), id: doc.id})))
+      console.log(products)
+    
+  };
+  fetchData();
+}, [])
 
   const hashValues = (string) => {
     var hash = 0;
@@ -49,9 +63,10 @@ const UserContextProvider = (props) => {
         setCellNum,
         img,
         setImg,
-        name,
+        nameInput,
         setNameInput,
         hashValues,
+        products
       }}
     >
       {props.children}

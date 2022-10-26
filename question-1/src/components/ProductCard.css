@@ -1,0 +1,8 @@
+.productCard{
+    width: 20vw;
+}
+
+.product-img{
+    width: 100%;
+    object-fit: fill;
+}

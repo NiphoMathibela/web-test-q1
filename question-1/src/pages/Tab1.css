@@ -1,0 +1,15 @@
+.product-card{
+    width: 250px;
+    display: inline-block;
+
+}
+
+.product-img img{
+    width: 100%;
+    height: 200px;
+    object-fit: fill;
+}
+
+.product-card h1 h2{
+    margin-left: 10px;    
+}
