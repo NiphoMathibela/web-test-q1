@@ -33,11 +33,13 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import UserContextProvider from "./contexts/UserContext"
 
 setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
+const App = () => (
+  <UserContextProvider>
+      <IonApp>
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
@@ -71,6 +73,8 @@ const App: React.FC = () => (
       </IonTabs>
     </IonReactRouter>
   </IonApp>
+  </UserContextProvider>
+
 );
 
 export default App;

@@ -9,35 +9,11 @@ const UserContextProvider = (props) => {
   const [cvv, setCvv] = useState();
   const [cardFlip, setCardFlip] = useState(false);
   const [message, setMessage] = useState("");
+  const [address, setAddress] = useState("");
+  const [cellNum, setCellNum] = useState("")
+  const [img, setImg] = useState("")
 
-  const expSplit = month.split("-");
-  const expMonth = expSplit[1];
-  const expYear = expSplit[0];
-
-  const handleCardNum = (e) => {
-    setCardNum(e.target.value);
-    console.log(cardNum);
-  };
-
-  const handleCardHolder = (e) => {
-    setCardHolder(e.target.value);
-    console.log(cardHolder);
-  };
-
-  const handleMonth = (e) => {
-    setMonth(e.target.value);
-    console.log(month);
-  };
-
-  const handleCvv = (e) => {
-    setCvv(e.target.value);
-    setCardFlip(false);
-    console.log(cvv);
-  };
-
-  const flip = () => {
-    setCardFlip((prev) => !prev);
-  };
+  
 
   return (
     <UserContext.Provider
@@ -54,6 +30,18 @@ const UserContextProvider = (props) => {
         setCardFlip,
         message,
         setMessage,
+        address, setAddress,
+        cellNum,
+        setCellNum,
+        img,
+        setImg
+        //handleCardNum,
+        //handleCardHolder,
+        //handleMonth,
+        //handleCvv,
+        //flip,
+        //handleAddress,
+        //handleCellNo
       }}
     >
       {props.children}

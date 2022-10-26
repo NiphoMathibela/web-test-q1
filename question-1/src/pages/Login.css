@@ -9,6 +9,11 @@
     text-align: center;
 }
 
+.button-box{
+    text-align: center;
+    margin: 10px;
+}
+
 .user-img{
     width: 250px;
     height: 250px;
