@@ -10,10 +10,23 @@ const UserContextProvider = (props) => {
   const [cardFlip, setCardFlip] = useState(false);
   const [message, setMessage] = useState("");
   const [address, setAddress] = useState("");
-  const [cellNum, setCellNum] = useState("")
-  const [img, setImg] = useState("")
+  const [cellNum, setCellNum] = useState("");
+  const [img, setImg] = useState("");
+  const [name, setNameInput] = useState("");
 
-  
+  const hashValues = (string) => {
+    var hash = 0;
+
+    if (string.length == 0) return hash;
+
+    for (let i = 0; i < string.length; i++) {
+      let char = string.charCodeAt(i);
+      hash = (hash << 5) - hash + char;
+      hash = hash & hash;
+    }
+
+    return hash;
+  };
 
   return (
     <UserContext.Provider
@@ -30,18 +43,15 @@ const UserContextProvider = (props) => {
         setCardFlip,
         message,
         setMessage,
-        address, setAddress,
+        address,
+        setAddress,
         cellNum,
         setCellNum,
         img,
-        setImg
-        //handleCardNum,
-        //handleCardHolder,
-        //handleMonth,
-        //handleCvv,
-        //flip,
-        //handleAddress,
-        //handleCellNo
+        setImg,
+        name,
+        setNameInput,
+        hashValues,
       }}
     >
       {props.children}

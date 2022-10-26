@@ -8,7 +8,8 @@ import {
   IonToolbar,
   IonItem,
   IonIcon,
-  IonButton
+  IonButton,
+  IonLabel
 } from "@ionic/react";
 import ExploreContainer from "../components/ExploreContainer";
 import { cameraOutline } from "ionicons/icons";
@@ -37,14 +38,10 @@ const Login = () => {
     setCellNum,
     setAddress,
     img,
-    setImg
-    // handleCardNum,
-    // handleCardHolder,
-    // handleMonth,
-    // handleCvv,
-    // flip,
-    // handleAddress,
-    // handleCellNo
+    setImg,
+    nameInput,
+    setNameInput,
+    hashValues
   } = useContext(UserContext);
 
   const expSplit = month.split("-");
@@ -99,6 +96,10 @@ const Login = () => {
     setAddress(e.target.value)
   }
 
+  const handleName = (e) => {
+    setNameInput(e.target.value)
+  }
+
   return (
     <IonPage>
       <IonHeader>
@@ -124,8 +125,8 @@ const Login = () => {
             <IonInput
               type="text"
               placeholder="Name and surname"
-              onIonChange= {handleCardHolder}
-              value={cardHolder}
+              onIonChange= {handleName}
+              value={nameInput}
             ></IonInput>
           </IonItem>
 
@@ -145,6 +146,16 @@ const Login = () => {
               onIonChange= {handleCellNo}
             ></IonInput>
           </IonItem>
+          
+          <IonItem>
+            <IonLabel>Name on card:</IonLabel>
+              <IonInput
+                type="text"
+                placeholder="Name on the card"
+                value={cardHolder}
+                onIonChange = {handleCardHolder}
+              ></IonInput>
+            </IonItem>
 
             <IonItem>
               <IonInput
