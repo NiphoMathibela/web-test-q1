@@ -10,7 +10,7 @@ import {
   setupIonicReact,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { ellipse, square, triangle } from "ionicons/icons";
+import { ellipse, square, triangle, storefrontOutline, searchOutline, cartOutline } from "ionicons/icons";
 import Tab1 from "./pages/Tab1";
 import Login from "./pages/Login";
 import Tab2 from "./pages/Tab2";
@@ -64,15 +64,15 @@ const App = () => (
 
             <IonTabBar slot="bottom">
               <IonTabButton tab="tab1" href="/tab1">
-                <IonIcon icon={triangle} />
+                <IonIcon icon={storefrontOutline} />
                 <IonLabel>Products</IonLabel>
               </IonTabButton>
               <IonTabButton tab="tab2" href="/tab2">
-                <IonIcon icon={ellipse} />
+                <IonIcon icon={searchOutline} />
                 <IonLabel>Search</IonLabel>
               </IonTabButton>
               <IonTabButton tab="tab3" href="/tab3">
-                <IonIcon icon={square} />
+                <IonIcon icon={cartOutline} />
                 <IonLabel>Cart</IonLabel>
               </IonTabButton>
             </IonTabBar>

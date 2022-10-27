@@ -20,7 +20,7 @@ const Tab3 = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 3</IonTitle>
+          <IonTitle>Shopping Cart</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
