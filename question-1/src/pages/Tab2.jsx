@@ -83,14 +83,16 @@ const Tab2 = () => {
           </IonToolbar>
         </IonHeader>
         <div className="searchBar">
-          <IonInput
+          <IonInput className= "search"
             type="text"
             placeholder="Search product"
             value={searchTerm}
             onIonChange={handleSearch}
+            
           ></IonInput>
-          <IonIcon onClick={search} icon={searchOutline} />
+          <div  className= "search-icon"><IonButton onClick={search}>Search</IonButton></div>
         </div>
+        
         {productList}
       </IonContent>
     </IonPage>

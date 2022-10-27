@@ -1,0 +1,13 @@
+.search{
+    width: 40vw;
+    margin: 15px auto;
+    border: 2px grey solid;
+    border-radius: 5px;
+    display: inline-block
+}
+
+.search-icon{
+    margin: 5px;
+    display: inline-block;
+    width: 40vw;
+}

@@ -171,6 +171,7 @@ const Login = () => {
               placeholder="Phone number"
               value={cellNum}
               onIonChange={handleCellNo}
+              maxLength= "10"
             ></IonInput>
           </IonItem>
 
@@ -186,10 +187,11 @@ const Login = () => {
 
           <IonItem>
             <IonInput
-              type="number"
+              type="text"
               placeholder="Card number"
               value={cardNum}
               onIonChange={handleCardNum}
+              maxLength= "16"
             ></IonInput>
           </IonItem>
           <IonItem>
@@ -201,10 +203,11 @@ const Login = () => {
           </IonItem>
           <IonItem>
             <IonInput
-              type="number"
+              type="text"
               placeholder="CVV"
               value={cvv}
               onIonChange={handleCvv}
+              maxLength= "3"
             ></IonInput>
           </IonItem>
           <div className="button-box">
