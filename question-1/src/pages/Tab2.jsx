@@ -1,18 +1,21 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonButton } from '@ionic/react';
-import './Tab1.css';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonButton, IonInput } from '@ionic/react';
+import './Tab2.css';
 import {useContext, useState} from "react"
 import {UserContext} from "../contexts/UserContext"
 import ProductCard from "../components/ProductCard"
 
 
-const Tab1 = () => {
+const Tab2 = () => {
     const {products, cart, setCart} = useContext(UserContext)
+    const [searchTerm, setSearchTerm] = useState("")
+
+    const handleSearch = (e) => {
+      setSearchTerm(e.target.value)
+    }
     
 
     const addToCart = (id) => {
         console.log(id)
-
-        // [products].map(item => id === item.id ? setCart(prev => [item, ...prev]) : cart)
 
         products.forEach(item => {
             if(item.id === id){
@@ -23,8 +26,21 @@ const Tab1 = () => {
 
         console.log("Cart: ", cart)
     }
+
+    const filteredProducts = products.filter(
+      product => {
+        return (
+          product
+          .productName
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase())
+        );
+      }
+    );
+
+
     console.log("List", products)
-    const productList = products.map(item => 
+    const productList = filteredProducts.map(item => 
     <IonCard className= "product-card" key= {item.id} img= {item.img} title = {item.productName} price = {item.price}>
         <div className= "product-img"><img src = {item.img}/></div>
         <h2>{item.productName}</h2>
@@ -44,11 +60,11 @@ const Tab1 = () => {
             <IonTitle size="large">Products</IonTitle>
           </IonToolbar>
         </IonHeader>
+        <div className= "searchBar"><input type= "text" placeholder= "Search product" value= {searchTerm} onChange={handleSearch}/></div>
         {productList}
-        <ProductCard/>
       </IonContent>
     </IonPage>
   );
 };
 
-export default Tab1;
+export default Tab2;

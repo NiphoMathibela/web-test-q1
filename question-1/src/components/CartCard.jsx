@@ -7,7 +7,7 @@ import {
   IonCardTitle,
 } from "@ionic/react";
 
-const ProductCard = () => {
+const ProductCard = (props) => {
   <>
     <IonCard className="productCard">
       <IonCardHeader>

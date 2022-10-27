@@ -16,6 +16,7 @@ const UserContextProvider = (props) => {
   const [img, setImg] = useState("");
   const [nameInput, setNameInput] = useState("");
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,7 +67,9 @@ const UserContextProvider = (props) => {
         nameInput,
         setNameInput,
         hashValues,
-        products
+        products,
+        cart,
+        setCart
       }}
     >
       {props.children}
